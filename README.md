@@ -2,6 +2,8 @@
 
 MFCT - Detection of Pneumonia from Chest CT using Advanced Deep Learning Methodologies
 
+This project presents an AI-driven approach to pneumonia detection using chest CT scans, combining pre-trained masked autoencoders (MAE) with few-shot learning techniques. By extracting meaningful features from images and enabling accurate classification with minimal labeled data, the method addresses the challenge of data scarcity in medical diagnostics—aiming to support faster, more reliable pneumonia diagnosis in clinical settings.
+
 Dataset Link: [COVID-19&Normal&Pneumonia_CT_Images](https://www.kaggle.com/datasets/anaselmasry/covid19normalpneumonia-ct-images?select=pneumonia_CT)
 
 
