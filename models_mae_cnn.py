@@ -1,14 +1,3 @@
-# Copyright (c) Meta Platforms, Inc. and affiliates.
-# All rights reserved.
-
-# This source code is licensed under the license found in the
-# LICENSE file in the root directory of this source tree.
-# --------------------------------------------------------
-# References:
-# timm: https://github.com/rwightman/pytorch-image-models/tree/master/timm
-# DeiT: https://github.com/facebookresearch/deit
-# --------------------------------------------------------
-
 from functools import partial
 
 import torch
@@ -35,7 +24,7 @@ class MaskedAutoencoderCNN(nn.Module):
 
         self.model = smp.__dict__[model_arch](
             encoder_name=encoder_name,        # choose encoder, e.g. mobilenet_v2 or efficientnet-b7
-            encoder_weights=None,     # use `imagenet` pre-trained weights for encoder initialization
+            encoder_weights='imagenet',     # use `imagenet` pre-trained weights for encoder initialization
             in_channels=3,                  # model input channels (1 for gray-scale images, 3 for RGB, etc.)
             classes=3,                      # model output channels (number of classes in your dataset)
         )

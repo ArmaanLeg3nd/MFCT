@@ -1,0 +1,15 @@
+MFCT - Detection of Pneumonia from Chest CT using Advanced Deep Learning Methodologies
+
+Copyright 2025 ArmaanLeg3nd
+
+This project incorporates code from the following sources:
+
+1. medical_mae (https://github.com/lambert-x/medical_mae)
+   - Licensed under Apache License 2.0
+   - Derived from facebookresearch/mae
+
+2. mae (https://github.com/facebookresearch/mae)
+   - Copyright © Meta Platforms, Inc. and affiliates.
+   - Licensed under the Creative Commons Attribution-NonCommercial 4.0 International License.
+
+Portions of this code are derived from these projects and are subject to their respective licenses. This project, as a whole, is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. Commercial use is not permitted.

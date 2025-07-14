@@ -33,7 +33,7 @@ from util.misc import NativeScalerWithGradNormCount as NativeScaler
 from models_mae_cnn import MaskedAutoencoderCNN
 
 from engine_pretrain import train_one_epoch
-from util.dataloader_med import CheXpert, ChestX_ray14, MIMIC
+from util.dataloader_med import CheXpert, ChestX_ray14, MIMIC, ChestCT
 import cv2
 from util.custom_transforms import custom_train_transform
 from util.sampler import RASampler
@@ -130,27 +130,9 @@ def main(args):
 
     cudnn.benchmark = True
 
-    # simple augmentation
-
-    # if args.resize_input == -1:
-    #     transform_train = transforms.Compose([
-    #             transforms.RandomResizedCrop(args.input_size, scale=(0.2, 1.0), interpolation=3),  # 3 is bicubic
-    #             transforms.RandomHorizontalFlip(),
-    #             transforms.ToTensor(),
-    #             transforms.Normalize([0.5056, 0.5056, 0.5056], [0.252, 0.252, 0.252])])
-    #
-    # else:
-    #     scaled_ratio_min = 0.2 * args.resize_input / 1024
-    #     scaled_ratio_max = 1.0 * args.resize_input / 1024
     concat_datasets = []
-    mean_dict = {'chexpert': [0.485, 0.456, 0.406],
-                 'chestxray_nih': [0.5056, 0.5056, 0.5056],
-                 'mimic_cxr': [0.485, 0.456, 0.406]
-                 }
-    std_dict = {'chexpert': [0.229, 0.224, 0.225],
-                'chestxray_nih': [0.252, 0.252, 0.252],
-                'mimic_cxr': [0.229, 0.224, 0.225]
-                }
+    mean_dict = {'chestct_custom': [0.485, 0.456, 0.406]}
+    std_dict = {'chestct_custom': [0.229, 0.224, 0.225]}
     print(args.datasets_names)
     for dataset_name in args.datasets_names:
         dataset_mean = mean_dict[dataset_name]
@@ -176,7 +158,7 @@ def main(args):
             print('Using Directly-Resize Mode. (no RandomResizedCrop)')
             transform_train = transforms.Compose([
                 transforms.Resize((args.input_size, args.input_size)),
-                transforms.RandomHorizontalFlip(),
+                # transforms.RandomHorizontalFlip(),
                 transforms.ToTensor(),
                 transforms.Normalize(dataset_mean, dataset_std)])
 
@@ -185,16 +167,8 @@ def main(args):
         else:
             heatmap_path = None
 
-        if dataset_name == 'chexpert':
-            dataset = CheXpert(csv_path="data/CheXpert-v1.0-small/train.csv", image_root_path='data/CheXpert-v1.0-small/', use_upsampling=False,
-                               use_frontal=True, mode='train', class_index=-1, transform=transform_train,
-                               heatmap_path=heatmap_path, pretraining=True)
-        elif dataset_name == 'chestxray_nih':
-            dataset = ChestX_ray14('data/nih_chestxray', "data_splits/chestxray/train_official.txt", augment=transform_train, num_class=14,
-                                   heatmap_path=heatmap_path, pretraining=True)
-        elif dataset_name == 'mimic_cxr':
-            dataset = MIMIC(path='data/mimic_cxr', version="chexpert", split="train", transform=transform_train, views=["AP", "PA"],
-                            unique_patients=False, pretraining=True)
+        if dataset_name == 'chestct_custom':
+            dataset = ChestCT(root_dir='Datasets/Dataset_L', transform=transform_train)
         else:
             raise NotImplementedError
         print(dataset)

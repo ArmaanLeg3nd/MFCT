@@ -1,0 +1,89 @@
+---- MAE mask percentage 
+
+Evaluating checkpoint: ./models/0.75/checkpoint-99-mae-pretrain-75.pth
+Processing Images: 100%|██████████| 40000/40000 [1:17:06<00:00,  8.65it/s]
+Checkpoint ./models/0.75/checkpoint-99-mae-pretrain-75.pth - Average Reconstruction Loss: 0.5339
+Evaluating checkpoint: ./models/0.80/checkpoint-99-mae-pretrain-80.pth
+Processing Images: 100%|██████████| 40000/40000 [1:16:18<00:00,  8.74it/s]
+Checkpoint ./models/0.80/checkpoint-99-mae-pretrain-80.pth - Average Reconstruction Loss: 0.5170
+Evaluating checkpoint: ./models/0.85/checkpoint-99-mae-pretrain-85.pth
+Processing Images: 100%|██████████| 40000/40000 [1:15:43<00:00,  8.80it/s]
+Checkpoint ./models/0.85/checkpoint-99-mae-pretrain-85.pth - Average Reconstruction Loss: 0.4395
+Evaluating checkpoint: ./models/0.90/checkpoint-99-mae-pretrain-90.pth
+Processing Images: 100%|██████████| 40000/40000 [1:17:08<00:00,  8.64it/s]
+Checkpoint ./models/0.90/checkpoint-99-mae-pretrain-90.pth - Average Reconstruction Loss: 0.4124
+Evaluating checkpoint: ./models/0.95/checkpoint-99-mae-pretrain-95.pth
+Processing Images: 100%|██████████| 40000/40000 [1:18:44<00:00,  8.47it/s]
+Checkpoint ./models/0.95/checkpoint-99-mae-pretrain-95.pth - Average Reconstruction Loss: 0.4961
+
+Best Checkpoint: ./models/0.90/checkpoint-99-mae-pretrain-90.pth with Lowest Average Loss: 0.4124
+
+---- Prototypical Networks on 90% mask pretrain
+
+Model converged in 6 epochs
+
+Test Accuracy: 0.8353
+Test Precision: 0.8390
+Test Recall: 0.8353
+Test F1 Score: 0.8360
+Test Confusion Matrix:
+[[414  43  43]
+ [  0 436  64]
+ [ 37  60 403]]
+
+
+Accuracy on Full Dataset: 0.4628
+Precision on Full Dataset: 0.5468
+Recall on Full Dataset: 0.4628
+F1 Score on Full Dataset: 0.4270
+Confusion Matrix on Full Dataset:
+[[ 492  367 1176]
+ [   0 1971  148]
+ [  84 2278 1028]]
+
+---- Relation Networks on 90% mask pretrain
+
+Model converged in 8 epochs
+
+Test Accuracy: 0.9480
+Test Precision: 0.9480
+Test Recall: 0.9480
+Test F1 Score: 0.9480
+Test Confusion Matrix:
+[[444  13  43]
+ [  0 478  22]
+ [  0   0 500]]
+
+
+Accuracy on Full Dataset: 0.6805
+Precision on Full Dataset: 0.7133
+Recall on Full Dataset: 0.6805
+F1 Score on Full Dataset: 0.6795
+Confusion Matrix on Full Dataset:
+[[1545  126  364]
+ [   8 1804  307]
+ [ 234 1371 1785]]
+
+
+---- Densenet121 simple model
+
+Model converged in 11 epochs
+
+Test Accuracy: 1.0000
+Test Precision: 1.0000
+Test Recall: 1.0000
+Test F1 Score: 1.0000
+Test Confusion Matrix:
+[[500   0   0]
+ [  0 500   0]
+ [  0   0 500]]
+
+
+Accuracy on Full Dataset: 0.6255
+Precision on Full Dataset: 0.7028
+Recall on Full Dataset: 0.6255
+F1 Score on Full Dataset: 0.6088
+Confusion Matrix on Full Dataset:
+[[ 675   18 1342]
+ [   0 1207  912]
+ [  29  524 2837]]
