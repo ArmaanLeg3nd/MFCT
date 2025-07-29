@@ -6,6 +6,16 @@ This project presents an AI-driven approach to pneumonia detection using chest C
 
 Dataset Link: [COVID-19&Normal&Pneumonia_CT_Images](https://www.kaggle.com/datasets/anaselmasry/covid19normalpneumonia-ct-images?select=pneumonia_CT)
 
+## Architecture 
+
+The proposed architecture for pneumonia detection combines Masked Autoencoders (MAE) for self-supervised pretraining with a Few-Shot Learning approach for classification. This hybrid design allows the model to leverage a large set of unlabelled chest CT scans to learn general, high-quality feature representations using MAE, and then adapt to a small labelled dataset for accurate pneumonia classification. The architecture is divided into four sequential phases: Dataset Preparation, Pretraining with MAE, Few-Shot Learning, and Evaluation and Fine-Tuning.
+
+<p align="center">
+  <img src="figures_mae_fewshot/MAE_FSL_Arch_updated.png" alt="YOLOv11 Curves" width="350">
+</p>
+
+
+During the pretraining phase, a large portion of each image is masked, and the MAE encoder (based DenseNet121) is trained to reconstruct the missing parts using a lightweight decoder and MSE loss. This enables the encoder to learn robust, meaningful visual features from chest CT images. In the few-shot learning phase, the pretrained encoder serves as a fixed feature extractor, and a few-shot classification algorithm—paired with a simple classifier head—is applied to the small labelled dataset. Finally, evaluation and fine-tuning involve cross-validation, performance metric analysis, and hyperparameter tuning to optimize the model’s performance in low-data medical imaging scenarios
 
 ## Environment Setup
 
